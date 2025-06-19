@@ -1,0 +1,8 @@
+import pandas as pd
+
+df = pd.DataFrame({
+    'age': [23, 45, 31, 35, 62],
+    'salary': [50000, 80000, 60000, 58000, 120000]
+})
+
+print(df.describe())
