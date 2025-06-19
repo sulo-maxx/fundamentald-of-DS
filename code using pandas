@@ -1,0 +1,65 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Step 1: Create a sample CSV file named "marks.csv"
+data = {
+    'student': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Hannah'],
+    'm1': [78, 85, 92, 88, None, 76, 95, 89],
+    'm2': [82, 90, 85, None, 79, 88, 91, 84],
+    'm3': [88, 87, 94, 86, 83, 75, 89, 92]
+}
+
+df = pd.DataFrame(data)
+df.to_csv('marks.csv', index=False)
+
+# Step 2: Read the data from CSV
+marks = pd.read_csv('marks.csv')
+print("Original Data:")
+print(marks)
+
+# Step 3: Retrieve only first and last 5 rows
+print("\nFirst 5 rows:")
+print(marks.head())
+
+print("\nLast 5 rows:")
+print(marks.tail())
+
+# Step 4: Purpose of describe() function
+print("\nPurpose of describe():")
+print("The describe() function provides summary statistics like count, mean, std, min, max, and quartiles.")
+
+print("\nSummary statistics:")
+print(marks.describe())
+
+# Step 5: Select only 3rd to 6th row (index 2 to 5)
+print("\nRows 3 to 6 (index 2 to 5):")
+print(marks.iloc[2:6])
+
+# Step 6: Select rows where m3 > 84
+print("\nRows where m3 > 84:")
+print(marks[marks['m3'] > 84])
+
+# Step 7: Filter rows with missing values
+print("\nRows with missing values:")
+print(marks[marks.isnull().any(axis=1)])
+
+# Step 8: Remove rows with missing values
+marks_no_missing = marks.dropna()
+print("\nData after removing rows with missing values:")
+print(marks_no_missing)
+
+# Step 9: Sort m1 column in descending order
+print("\nData sorted by m1 in descending order:")
+print(marks.sort_values(by='m1', ascending=False))
+
+# Step 10: Plot the table (plotting marks of m1, m2, m3 for each student)
+marks_no_missing.plot(x='student', y=['m1', 'm2', 'm3'], kind='bar')
+plt.title('Marks of Students')
+plt.ylabel('Marks')
+plt.xlabel('Student')
+plt.tight_layout()
+plt.show()
+
+# Step 11: Output for marks.ix[3:6, ['m2', 'm3']] (note: .ix is deprecated, use .iloc/.loc)
+print("\nOutput for marks.ix[3:6, ['m2', 'm3']] equivalent:")
+print(marks.loc[3:6, ['m2', 'm3']])
