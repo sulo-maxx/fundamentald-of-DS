@@ -1,0 +1,23 @@
+import numpy as np
+
+house_data = np.array([
+    [3, 1500, 250000],
+    [5, 2000, 375000],
+    [4, 1800, 300000]
+])
+
+# 1. Boolean mask
+mask = house_data[:, 0] > 4
+
+# 2. Filter rows
+filtered = house_data[mask]
+
+# 3. Extract prices
+prices = filtered[:, 2]
+
+# 4. Average
+if prices.size > 0:
+    avg_price = np.mean(prices)
+    print(f"Average sale price of houses with >4 bedrooms: ₹{avg_price:,.2f}")
+else:
+    print("No houses with more than 4 bedrooms found.")
