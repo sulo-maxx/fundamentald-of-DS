@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+
+# Sample data: Monthly sales
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+sales = [10000, 12000, 9000, 11000, 15000, 13000, 17000, 16000, 14000, 18000, 20000, 19000]
+
+# Create a bar plot
+plt.bar(months, sales, color='skyblue', edgecolor='black')
+
+# Add labels and title
+plt.xlabel('Month')
+plt.ylabel('Sales')
+plt.title('Monthly Sales Comparison')
+
+# Display the plot
+plt.xticks(rotation=45)  # Rotate month labels for better readability
+plt.tight_layout()
+plt.show()
