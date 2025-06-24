@@ -1,0 +1,23 @@
+# Sample data
+item_prices = [100, 200, 150]  # Prices of items
+quantities = [2, 1, 3]         # Quantities of items
+discount_rate = 10             # Discount rate in percentage
+tax_rate = 5                   # Tax rate in percentage
+
+# Step 1: Calculate the subtotal (price * quantity for each item)
+subtotal = sum([price * quantity for price, quantity in zip(item_prices, quantities)])
+
+# Step 2: Apply the discount
+discount_amount = subtotal * (discount_rate / 100)
+subtotal_after_discount = subtotal - discount_amount
+
+# Step 3: Apply the tax
+tax_amount = subtotal_after_discount * (tax_rate / 100)
+total_cost = subtotal_after_discount + tax_amount
+
+# Output the results
+print(f"Subtotal: ₹{subtotal:.2f}")
+print(f"Discount: ₹{discount_amount:.2f}")
+print(f"Subtotal after discount: ₹{subtotal_after_discount:.2f}")
+print(f"Tax: ₹{tax_amount:.2f}")
+print(f"Total cost: ₹{total_cost:.2f}")
