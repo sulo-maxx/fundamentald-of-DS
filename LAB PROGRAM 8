@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Sample order_data DataFrame
+order_data = pd.DataFrame({
+    'product_name': ['Product A', 'Product B', 'Product A', 'Product C', 'Product B'],
+    'order_quantity': [10, 5, 8, 12, 7],
+    'order_date': ['2025-05-15', '2025-05-20', '2025-05-25', '2025-06-05', '2025-06-10']
+})
+
+# Convert 'order_date' to datetime
+order_data['order_date'] = pd.to_datetime(order_data['order_date'])
+
+# Filter data for the past month (June 2025)
+last_month = pd.to_datetime('2025-06-01')
+this_month = pd.to_datetime('2025-06-30')
+monthly_data = order_data[(order_data['order_date'] >= last_month) & (order_data['order_date'] <= this_month)]
+
+# Group by 'product_name' and sum 'order_quantity'
+top_products = monthly_data.groupby('product_name')['order_quantity'].sum().nlargest(5)
+
+print(top_products)
