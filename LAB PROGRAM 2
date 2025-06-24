@@ -1,0 +1,16 @@
+import numpy as np
+
+# Sample data: 3 products × 3 sales prices
+prices = np.array([
+    [19.99, 21.50, 20.00],
+    [35.00, 33.75, 34.25],
+    [12.00, 11.50, 13.00]
+])
+
+overall_avg = np.mean(prices)
+per_product_avg = np.mean(prices, axis=1)  # average price per product
+
+print("Overall average price: ₹{:.2f}".format(overall_avg))
+print("Average price per product:")
+for idx, avg in enumerate(per_product_avg, start=1):
+    print(f" - Product {idx}: ₹{avg:.2f}")
