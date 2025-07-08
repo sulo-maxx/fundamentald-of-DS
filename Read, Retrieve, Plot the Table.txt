@@ -1,0 +1,46 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('C:\\Users\\rishi\\OneDrive\\Documents\\marks.csv')
+
+print("First 5 rows:")
+print(df.head())
+print("\nLast 5 rows:")
+print(df.tail())
+
+print("\nDescriptive statistics:")
+print(df.describe())
+
+# iv) Select only 3rd to 6th row (index 2 to 5)
+print("\nRows 3 to 6:")
+print(df.iloc[2:6])
+
+# v) Select only the column M3 greater than 84 marks
+print("\nRows where M3 > 84:")
+print(df[df['M3'] > 84])
+
+# vi) Filter the rows with missing values
+print("\nRows with missing values:")
+print(df[df.isnull().any(axis=1)])
+
+# vii) Remove the missing value rows
+df_cleaned = df.dropna()
+print("\nDataFrame after removing missing values:")
+print(df_cleaned)
+
+# viii) Sort the M1 column in descending order
+df_sorted = df.sort_values(by='M1', ascending=False)
+print("\nDataFrame sorted by M1 descending:")
+print(df_sorted)
+
+# ix) Plot the table
+df[['NAME', 'M1', 'M2', 'M3']].set_index('NAME').plot(kind='bar')
+plt.ylabel("Marks")
+plt.title("Student Marks in M1, M2, M3")
+plt.tight_layout()
+plt.show()
+
+# x) Output of: marks.ix[3:6, ['m2','m3']]
+# Note: .ix is deprecated. Use loc instead.
+print("\nEquivalent of marks.ix[3:6, ['m2','m3']] (using loc):")
+print(df.loc[3:6, ['M2', 'M3']])
